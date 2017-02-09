@@ -13,10 +13,17 @@ from bs4 import BeautifulSoup
 ## PART 1 (100 points) - Get the HTML data from http://www.nytimes.com (the New York Times home page) and save it in a file called nytimes_data.html.
 
 ## Write the Python code to do so here.
-html_text = requests.get("http://www.nytimes.com").text
-fileref = open("nytimes_data.html", "w")
-fileref.write(html_text)
-fileref.close()
+cache_name = "nytimes_data.html"
+try:
+	fileref = open(cache_name, "r")
+	text_data = fileref.read()
+	print("Opening cached file")
+	fileref.close()
+except:
+	html_text = requests.get("http://www.nytimes.com").text
+	fileref = open(cache_name, "w")
+	fileref.write(html_text)
+	fileref.close()
 
 #####################
 
@@ -46,7 +53,8 @@ fileref.close()
 
 baseurl = "http://www.nytimes.com"
 nyt_request = requests.get(baseurl)
-nyt_soup = BeautifulSoup(nyt_request.text,"lxml")
+nyt_soup = BeautifulSoup(nyt_request.text, "html.parser")
+# nyt_soup = BeautifulSoup(nyt_request.text,"lxml")
 
 nytimes_headlines = []
 for avalue in nyt_soup.find_all(class_="story-heading"): #returns list with all tags that have 'story heading' as a class
