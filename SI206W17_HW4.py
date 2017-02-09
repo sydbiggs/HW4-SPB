@@ -96,13 +96,22 @@ umsi_titles = {}
 ## Find the container that holds the title that belongs to that person (HINT: a class name)
 ## Grab the text of each of those elements and put them in the dictionary umsi_titles properly
 
-length = len(people)
-for i in (range(length)):
-	name = ((people[i].div).find("div", property="dc:title"))
-	name = (name.next_element).next_element
-	title = (people[i].div).find("div", class_="field field-name-field-person-titles field-type-text field-label-hidden")
-	title = ((title.next_element).next_element).next_element
+for i in range(len(people)):
+	name = (((people[i].find_all("h2"))[1]).text)
+	title = (((people[i].div).find_all("div", class_="field field-name-field-person-titles field-type-text field-label-hidden"))[0].text)
 	umsi_titles[name] = title
+
+## Another way to do this
+
+# length = len(people)
+# for i in (range(length)):
+# 	name = ((people[i].div).find("div", property="dc:title"))
+# 	name = (name.next_element).next_element
+# 	title = (people[i].div).find("div", class_="field field-name-field-person-titles field-type-text field-label-hidden")
+# 	title = ((title.next_element).next_element).next_element
+# 	umsi_titles[name] = title
+
+
 
 ######### UNIT TESTS; DO NOT CHANGE ANY CODE BELOW THIS LINE #########
 #### NOTE: hard-coding to pass any of these tests w/o following assignment instructions is not acceptable for points
