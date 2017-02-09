@@ -102,7 +102,6 @@ for i in range(len(people)):
 	umsi_titles[name] = title
 
 ## Another way to do this
-
 # length = len(people)
 # for i in (range(length)):
 # 	name = ((people[i].div).find("div", property="dc:title"))
