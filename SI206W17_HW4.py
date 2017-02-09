@@ -54,7 +54,8 @@ for avalue in nyt_soup.find_all(class_="story-heading"): #returns list with all 
 		nytimes_headlines.append(avalue.a.text.replace("\n", " ").strip())
 	else:
 		nytimes_headlines.append(avalue.contents[0].strip())
-print(len(nytimes_headlines))
+nytimes_headlines = nytimes_headlines[0:10]
+
 #####################
 
 
